@@ -9,5 +9,6 @@ namespace captcha.Services.Db.Entity
         public string Code{get;set;}
         public bool Status{get;set;}
         public DateTime TimeExpires{get;set;}= DateTime.Now.AddMinutes(5);
+        public ApiKey ApiKey {get;set;}
     }
 }

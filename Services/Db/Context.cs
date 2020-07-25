@@ -8,7 +8,7 @@ namespace captcha.Services.Db
         public Context(DbContextOptions<Context> options):base(options)
         {
         }
-
+        public DbSet<ApiKey> ApiKeys{get;set;}
         public DbSet<SessionCaptcha> SessionCaptchas{get;set;}
     }
 }
