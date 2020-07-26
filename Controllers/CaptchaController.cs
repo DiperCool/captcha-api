@@ -37,8 +37,8 @@ namespace captcha.Controllers
         public IActionResult setStatus(string sessionKey, string code)
         {
             var res= _context.sessionCodeIsEqual(sessionKey, code,HttpContext.Request.Headers["Api-Key"]);
+            _context.setSessionStatus(sessionKey,HttpContext.Request.Headers["Api-Key"],res);
             if(!res) return BadRequest("Code is invalid");
-            _context.setSessionStatusTrue(sessionKey,HttpContext.Request.Headers["Api-Key"]);
             return Ok();
         }
 
@@ -50,11 +50,5 @@ namespace captcha.Controllers
             if(res==null) return Ok("session not exist");
             return Ok(res);
         }
-        [HttpPost("/create/apikey")]
-        public IActionResult createApiKey()
-        {
-            return Ok(_context.createApiKey().Key);
-        }
-
     }
 }

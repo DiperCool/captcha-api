@@ -20,13 +20,13 @@ namespace captcha.Services.Repositoriy
             return _context.SessionCaptchas.Any(x=>x.SessionKey==sessionKey&&x.Code==code);
         }
 
-        public void setSessionStatusTrue(string sessionKey,string apikey)
+        public void setSessionStatus(string sessionKey,string apikey,bool res)
         {
             var sess =_context.SessionCaptchas.FirstOrDefault(x=>x.SessionKey==sessionKey&&x.ApiKey.Key==apikey);
             if(sess==null){
                 return;
             }
-            sess.Status=true;
+            sess.Status=res;
             _context.SessionCaptchas.Update(sess);
             _context.SaveChanges();
 

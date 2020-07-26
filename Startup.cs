@@ -47,9 +47,10 @@ namespace captcha
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors(opt=>opt.AllowAnyOrigin().AllowAnyMethod());
             app.UseAuthorization();
-
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
